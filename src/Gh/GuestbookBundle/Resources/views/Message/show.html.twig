@@ -1,0 +1,32 @@
+{% extends 'GhGuestbookBundle::layout.html.twig' %}
+
+{% block content -%}
+    <div id="wrap">
+        <div class="container">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ entity.name }}</td>
+                </tr>
+                <tr>
+                    <th>Message</th>
+                    <td>{{ entity.message }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ entity.email }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('gh_guestbook_message') }}">
+                        Back to the list
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

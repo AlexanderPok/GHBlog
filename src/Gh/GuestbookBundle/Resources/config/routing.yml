@@ -1,0 +1,11 @@
+gh_guestbook_message:
+    pattern:  /
+    defaults: { _controller: "GhGuestbookBundle:Message:index" }
+
+gh_guestbook_message_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "GhGuestbookBundle:Message:show" }
+
+gh_guestbook_message_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GhGuestbookBundle:Message:delete" }

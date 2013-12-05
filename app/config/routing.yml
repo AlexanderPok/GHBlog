@@ -1,0 +1,5 @@
+gh_guestbook:
+    resource: "@GhGuestbookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

@@ -1,0 +1,66 @@
+{% extends 'GhGuestbookBundle::layout.html.twig' %}
+{% block header %}
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+            {{ form_start(createMessageForm, {attr: {class: 'create-message-form'}}) }}
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        {{ form_widget(createMessageForm.name) }}
+                        {{ form_errors(createMessageForm.name) }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form_widget(createMessageForm.email) }}
+                        {{ form_errors(createMessageForm.email) }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form_row(createMessageForm.submit) }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            <div class="col-sm-8">
+                {{ form_row(createMessageForm.message) }}
+            </div>
+            {{ form_end(createMessageForm) }}
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="wrap">
+        <div class="container">
+            <table class="table">
+                <tbody>
+                {% for message in pagination %}
+                    <tr>
+                        <td>
+                            <p>{{ message.name }}, {{ message.email }}</p>
+                            <p>{{ message.message[:100] }}</p>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('gh_guestbook_message_show', { 'id': message.id }) }}">посмотреть</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('gh_guestbook_message_delete', { 'id': message.id }) }}">удалить</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="text-center">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </footer>
+{% endblock %}
