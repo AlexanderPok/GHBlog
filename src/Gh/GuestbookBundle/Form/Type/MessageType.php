@@ -42,7 +42,7 @@ class MessageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Gh\GuestbookBundle\Entity\Message'
+            'data_class' => 'Gh\GuestbookBundle\Document\Message'
         ));
     }
 

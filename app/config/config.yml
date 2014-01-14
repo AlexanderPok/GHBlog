@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ GhGuestbookBundle  ]
+    bundles:        [ GhGuestbookBundle, GhBlogBundle ]
     #java: /usr/bin/java
     filters:
         less:
@@ -86,3 +86,19 @@ braincrafted_bootstrap:
 
 parameters:
     gh_guestbook.messages_per_page: 10
+
+
+doctrine_mongodb:
+    connections:
+        default:
+            server: mongodb://localhost:27017
+            options: {}
+    default_database: gh_blog
+    document_managers:
+        default:
+            auto_mapping: true
+
+#tof_doctrine_extensions:
+#    mongodb:
+#        default:
+#            timestampable: true

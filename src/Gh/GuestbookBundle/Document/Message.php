@@ -1,48 +1,45 @@
 <?php
-namespace Gh\GuestbookBundle\Entity;
+namespace Gh\GuestbookBundle\Document;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="message")
- */
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
+/**
+ * @MongoDB\Document
+ */
 class Message
 {
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @MongoDB\Id
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @MongoDB\String
      * @Assert\NotBlank()
      */
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @MongoDB\String
      * @Assert\NotBlank()
      * @Assert\Length(min = "100")
      */
     private $message;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @MongoDB\String
      * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $email;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return id $id
      */
     public function getId()
     {
@@ -53,19 +50,18 @@ class Message
      * Set name
      *
      * @param string $name
-     * @return Message
+     * @return self
      */
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string $name
      */
     public function getName()
     {
@@ -76,19 +72,18 @@ class Message
      * Set message
      *
      * @param string $message
-     * @return Message
+     * @return self
      */
     public function setMessage($message)
     {
         $this->message = $message;
-
         return $this;
     }
 
     /**
      * Get message
      *
-     * @return string 
+     * @return string $message
      */
     public function getMessage()
     {
@@ -99,19 +94,18 @@ class Message
      * Set email
      *
      * @param string $email
-     * @return Message
+     * @return self
      */
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string $email
      */
     public function getEmail()
     {

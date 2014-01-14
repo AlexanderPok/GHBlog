@@ -6,15 +6,15 @@ use Gh\GuestbookBundle\Form\Type\MessageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Gh\GuestbookBundle\Entity\Message;
+use Gh\GuestbookBundle\Document\Message;
 
 class MessageController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $messageQb = $em->getRepository('GhGuestbookBundle:Message')->createQueryBuilder('m')
-            ->orderBy('m.id', 'DESC');
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $messageQb = $dm->getRepository('GhGuestbookBundle:Message')->createQueryBuilder()
+            ->sort('id', 'DESC');
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $messageQb,
@@ -25,8 +25,8 @@ class MessageController extends Controller
         $createForm = $this->createCreateForm($message);
         $createForm->handleRequest($request);
         if ($createForm->isValid()) {
-            $em->persist($message);
-            $em->flush();
+            $dm->persist($message);
+            $dm->flush();
             return $this->redirect($this->generateUrl('gh_guestbook_message'));
         }
         return $this->render('GhGuestbookBundle:Message:index.html.twig', array(
@@ -49,9 +49,9 @@ class MessageController extends Controller
 
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $dm = $this->get('doctrine_mongodb')->getManager();
 
-        $entity = $em->getRepository('GhGuestbookBundle:Message')->find($id);
+        $entity = $dm->getRepository('GhGuestbookBundle:Message')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Message entity.');
@@ -64,15 +64,15 @@ class MessageController extends Controller
 
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('GhGuestbookBundle:Message')->find($id);
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $entity = $dm->getRepository('GhGuestbookBundle:Message')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Message entity.');
         }
 
-        $em->remove($entity);
-        $em->flush();
+        $dm->remove($entity);
+        $dm->flush();
 
         return $this->redirect($this->generateUrl('gh_guestbook_message'));
     }
