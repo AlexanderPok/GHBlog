@@ -77,4 +77,13 @@ class MessageController extends Controller
         return $this->redirect($this->generateUrl('gh_guestbook_message'));
     }
 
+    public function lastMessagesPartialAction()
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $messages = $dm->getRepository('GhGuestbookBundle:Message')
+            ->findLastMessages();
+        return $this->render('GhGuestbookBundle:Message:last-messages-partial.html.twig', array(
+            'messages' => $messages,
+        ));
+    }
 }

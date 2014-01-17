@@ -98,7 +98,8 @@ doctrine_mongodb:
         default:
             auto_mapping: true
 
-#tof_doctrine_extensions:
-#    mongodb:
-#        default:
-#            timestampable: true
+stof_doctrine_extensions:
+    mongodb:
+        default:
+            timestampable: true
+            sluggable: true

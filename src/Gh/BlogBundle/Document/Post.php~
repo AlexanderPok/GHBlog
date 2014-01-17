@@ -50,14 +50,7 @@ class Post
     /**
      * @MongoDB\Int
      */
-    private $visitCount = 0;
-
-    /**
-     * @Gedmo\Slug(fields={"title"})
-     * @MongoDB\String
-     * @MongoDB\UniqueIndex
-     */
-    private $slug;
+    private $visitCount;
 
     public function __construct()
     {
@@ -118,19 +111,12 @@ class Post
         return $this->text;
     }
 
-    /**
-     * @param \DateTime $created
-     * @return $this
-     */
     public function setCreated($created)
     {
         $this->created = $created;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getCreated()
     {
         return $this->created;
@@ -181,37 +167,5 @@ class Post
     public function getTags()
     {
         return $this->tags;
-    }
-
-    /**
-     * Set visitCount
-     *
-     * @param int $visitCount
-     * @return self
-     */
-    public function setVisitCount($visitCount)
-    {
-        $this->visitCount = $visitCount;
-        return $this;
-    }
-
-    /**
-     * Get visitCount
-     *
-     * @return int $visitCount
-     */
-    public function getVisitCount()
-    {
-        return $this->visitCount;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string $slug
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

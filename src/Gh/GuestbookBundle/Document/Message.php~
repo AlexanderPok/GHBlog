@@ -1,0 +1,41 @@
+<?php
+namespace Gh\GuestbookBundle\Document;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Message
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     */
+    private $name;
+
+    /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     * @Assert\Length(min = "100")
+     */
+    private $message;
+
+    /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
+    private $email;
+
+
+
+}

@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Gh\GuestbookBundle\GhGuestbookBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Gh\BlogBundle\GhBlogBundle(),
         );
 

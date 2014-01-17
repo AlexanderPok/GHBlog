@@ -3,18 +3,29 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-    <!--
-    <parameters>
-        <parameter key="gh_blog.example.class">Gh\BlogBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="gh_blog.example" class="%gh_blog.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="gh.blog.twig.truncate_word_extension" class="Gh\BlogBundle\Twig\TruncateWordExtension">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="twig.extension.text" class="Twig_Extensions_Extension_Text">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="gh.blog.listener.post_visit" class="Gh\BlogBundle\EventListener\PostVisitListener">
+            <argument type="service" id="gh.blog.repository.post" />
+            <tag name="kernel.event_listener" event="gh.blog.listener.post_visit" method="onPostVisit"/>
+        </service>
+
+        <service id="gh.blog.post" class="Gh\BlogBundle\Service\PostService">
+            <argument type="service" id="doctrine_mongodb.odm.default_document_manager" />
+            <argument type="service" id="event_dispatcher" />
+        </service>
+
+        <service id="gh.blog.repository.post" class="Gh\BlogBundle\Repository\PostRepository"
+                 factory-service="doctrine_mongodb.odm.default_document_manager"
+                 factory-method="getRepository">
+            <argument>GhBlogBundle:Post</argument>
         </service>
     </services>
-    -->
 </container>

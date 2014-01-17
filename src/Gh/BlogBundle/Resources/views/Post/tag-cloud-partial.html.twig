@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Tags</h3>
+    </div>
+    <div class="panel-body">
+        <div id="tag-cloud">
+            {% for tag in tags %}
+                <a href="/" rel="{{ tag.value }}">{{ tag._id }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

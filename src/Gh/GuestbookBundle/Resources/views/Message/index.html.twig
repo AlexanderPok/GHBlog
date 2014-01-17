@@ -1,6 +1,7 @@
 {% extends 'GhGuestbookBundle::layout.html.twig' %}
 {% block header %}
     <div class="navbar navbar-default navbar-fixed-top">
+        {{ parent() }}
         <div class="container">
             <div class="text-center">
                 {{ knp_pagination_render(pagination) }}

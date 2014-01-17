@@ -1,0 +1,28 @@
+{% extends 'GhBlogBundle::layout.html.twig' %}
+{% block pageTitle %}Blog{% endblock %}
+{% block wrappedContent %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-right">
+                Category: {{ post.category.name }}
+            </div>
+            <h3 class="panel-title">
+                {{ post.title }}
+            </h3>
+            <div class="posted-at">
+                Posted at {{ post.created|date("d.m.Y h:i") }}
+            </div>
+        </div>
+        <div class="panel-body">
+            {{ post.text }}
+        </div>
+        {% if post.tags|length %}
+        <div class="panel-footer">
+            <div class="pull-right">
+                Tags: {{ post.tags|join(', ') }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

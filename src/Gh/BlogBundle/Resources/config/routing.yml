@@ -1,7 +1,11 @@
 gh_blog_home:
     pattern:  /
-    defaults: { _controller: "GhBlogBundle:Post:index" }
+    defaults: { _controller: "GhBlogBundle:Post:list" }
+
+gh_blog_about:
+    pattern:  /about
+    defaults: { _controller: "GhBlogBundle:Index:about" }
 
 gh_blog_post:
-    pattern:  /{id}
+    pattern:  /post/{slug}
     defaults: { _controller: "GhBlogBundle:Post:show" }
