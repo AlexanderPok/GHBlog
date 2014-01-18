@@ -12,6 +12,10 @@ class MessageController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $template = 'GhGuestbookBundle:Message:index.html.twig';
+        if ($request->isXmlHttpRequest()) {
+            $template = 'GhGuestbookBundle:Message:list-partial.html.twig';
+        }
         $dm = $this->get('doctrine_mongodb')->getManager();
         $messageQb = $dm->getRepository('GhGuestbookBundle:Message')->createQueryBuilder()
             ->sort('id', 'DESC');
@@ -29,7 +33,7 @@ class MessageController extends Controller
             $dm->flush();
             return $this->redirect($this->generateUrl('gh_guestbook_message'));
         }
-        return $this->render('GhGuestbookBundle:Message:index.html.twig', array(
+        return $this->render($template, array(
             'pagination' => $pagination,
             'createMessageForm' => $createForm->createView(),
         ));

@@ -7,4 +7,18 @@ $(document).ready(function(){
     $(function () {
         $('#tag-cloud a').tagcloud();
     });
+
+    $("body").on( "click", ".showmore", function(){
+        var me = this,
+            url = $(this).attr('data-url');
+        $.ajax({
+            url: url
+        }).done(function(data) {
+            var $container = $(me).parents('.showmore-container');
+            if (!$container.length) {
+                $container = $(me);
+            }
+            $container.replaceWith(data);
+        });
+    });
 });

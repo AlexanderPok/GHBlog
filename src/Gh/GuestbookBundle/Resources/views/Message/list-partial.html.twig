@@ -1,0 +1,29 @@
+{% for message in pagination %}
+    <tr>
+        <td>
+            <p>{{ message.name }}, {{ message.email }}</p>
+            <p>{{ message.message[:100] }}</p>
+        </td>
+        <td>
+            <ul>
+                <li>
+                    <a href="{{ path('gh_guestbook_message_show', { 'id': message.id }) }}">посмотреть</a>
+                </li>
+                <li>
+                    <a href="{{ path('gh_guestbook_message_delete', { 'id': message.id }) }}">удалить</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+{% endfor %}
+{% set paginationData = pagination.getPaginationData %}
+{% if paginationData.current != paginationData.last %}
+    {% set mergedParams = app.request.query.all|merge({'page': paginationData.next}) %}
+    <tr class="showmore-container">
+        <td>
+            <a class="block btn btn-default showmore" href="javascript:void(0)" data-url="{{ path('gh_guestbook_message', mergedParams) }}">
+                Show More
+            </a>
+        </td>
+    </tr>
+{% endif %}

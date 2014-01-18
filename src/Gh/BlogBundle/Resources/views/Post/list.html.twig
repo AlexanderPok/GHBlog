@@ -1,30 +1,5 @@
 {% extends 'GhBlogBundle::layout.html.twig' %}
 {% block pageTitle %}Blog{% endblock %}
 {% block wrappedContent %}
-    {% for post in posts %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="pull-right">
-                    Category: {{ post.category.name }}
-                </div>
-                <h3 class="panel-title">
-                    <a href="{{ path('gh_blog_post', {'slug': post.slug}) }}">{{ post.title }}</a>
-                </h3>
-                <div class="posted-at">
-                    Posted at {{ post.created|date("d.m.Y h:i") }}
-                </div>
-            </div>
-            <div class="panel-body">
-                {{ post.text|truncate_word(300, '...') }}
-            </div>
-            {% if post.tags|length %}
-            <div class="panel-footer">
-                <div class="pull-right">
-                    Tags: {{ post.tags|join(', ') }}
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            {% endif %}
-        </div>
-    {% endfor %}
+    {{ include('GhBlogBundle:Post:list-partial.html.twig', { 'pagination': pagination }) }}
 {% endblock %}

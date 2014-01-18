@@ -5,6 +5,13 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
 
 class PostRepository extends DocumentRepository
 {
+    public function getRecentQb()
+    {
+        $qb = $this->createQueryBuilder()
+            ->sort('created', 'DESC');
+        return $qb;
+    }
+
     public function findRecent()
     {
         $qb = $this->createQueryBuilder()

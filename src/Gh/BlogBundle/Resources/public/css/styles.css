@@ -33,3 +33,7 @@ footer {
 .create-message-form textarea {
     resize: none;
 }
+
+.block {
+    display: block;
+}

@@ -19,7 +19,7 @@ class LoadPostData extends AbstractFixture implements FixtureInterface, OrderedF
             $this->getReference('smarts')
         );
         $tags = array();
-        $tagNames = array('wtf', 'science', 'phones', 'moto', 'ati');
+        $tagNames = array('wtf', 'science', 'phones', 'ati');
         foreach ($tagNames as $tagName) {
             $tags[] = $tagName;
         }

@@ -86,7 +86,7 @@ braincrafted_bootstrap:
 
 parameters:
     gh_guestbook.messages_per_page: 10
-
+    gh_blog.messages_per_page: 5
 
 doctrine_mongodb:
     connections:

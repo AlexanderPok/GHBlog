@@ -4,7 +4,9 @@
     </div>
     <div class="panel-body">
         {% for message in messages %}
-            <div class="raw">{{ message.message|truncate_word(80, '...') }}</div>
+            <div class="raw">
+                <a href="{{ path('gh_guestbook_message_show', { 'id': message.id }) }}">{{ message.message|truncate_word(80, '...') }}</a>
+            </div>
         {% endfor %}
     </div>
 </div>

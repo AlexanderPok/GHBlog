@@ -1,3 +1,5 @@
 {% for post in posts %}
-    <div class="raw">{{ post.text|truncate_word(30, '...') }}</div>
+    <div class="raw">
+        <a href="{{ path('gh_blog_post', {'slug': post.slug}) }}">{{ post.text|truncate_word(30, '...') }}</a>
+    </div>
 {% endfor %}

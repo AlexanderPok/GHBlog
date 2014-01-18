@@ -33,35 +33,9 @@
         <div class="container">
             <table class="table">
                 <tbody>
-                {% for message in pagination %}
-                    <tr>
-                        <td>
-                            <p>{{ message.name }}, {{ message.email }}</p>
-                            <p>{{ message.message[:100] }}</p>
-                        </td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('gh_guestbook_message_show', { 'id': message.id }) }}">посмотреть</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('gh_guestbook_message_delete', { 'id': message.id }) }}">удалить</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
+                {{ include('GhGuestbookBundle:Message:list-partial.html.twig', { 'pagination': pagination }) }}
                 </tbody>
             </table>
         </div>
     </div>
-{% endblock %}
-{% block footer %}
-    <footer>
-        <div class="container">
-            <div class="text-center">
-                {{ knp_pagination_render(pagination) }}
-            </div>
-        </div>
-    </footer>
 {% endblock %}

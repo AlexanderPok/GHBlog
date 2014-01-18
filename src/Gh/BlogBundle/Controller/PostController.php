@@ -5,14 +5,26 @@ namespace Gh\BlogBundle\Controller;
 use Gh\BlogBundle\Document\Category;
 use Gh\BlogBundle\Document\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends Controller
 {
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $posts = $this->get('gh.blog.repository.post')->findAll();
-        return $this->render('GhBlogBundle:Post:list.html.twig', array(
-            'posts' => $posts,
+        $template = 'GhBlogBundle:Post:list.html.twig';
+        if ($request->isXmlHttpRequest()) {
+            $template = 'GhBlogBundle:Post:list-partial.html.twig';
+        }
+        $qb = $this->get('gh.blog.repository.post')->getRecentQb();
+        $paginator  = $this->get('knp_paginator');
+        $this->getPostService()->applyFilters($qb, $request->query->all());
+        $pagination = $paginator->paginate(
+            $qb,
+            $this->get('request')->query->get('page', 1),
+            $this->container->getParameter('gh_blog.messages_per_page')
+        );
+        return $this->render($template, array(
+            'pagination' => $pagination,
         ));
     }
 
