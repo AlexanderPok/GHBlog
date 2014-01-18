@@ -3,6 +3,5 @@
 3) php bin/reload.php
 
 Not implemented yet:
--search
 -unit tests
 -post images

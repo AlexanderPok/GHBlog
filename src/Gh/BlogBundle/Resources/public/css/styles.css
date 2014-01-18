@@ -37,3 +37,7 @@ footer {
 .block {
     display: block;
 }
+
+.search {
+    line-height: 50px;
+}

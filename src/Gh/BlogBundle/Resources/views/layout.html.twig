@@ -21,6 +21,11 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         {{ knp_menu_render('mainNavbar', { 'style': 'navbar' }) }}
+        <div class="pull-right search">
+            <form class="form-inline" role="form" action="{{ path('gh_blog_home') }}">
+                <input type="text" name="q" class="form-control" placeholder="Search" />
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

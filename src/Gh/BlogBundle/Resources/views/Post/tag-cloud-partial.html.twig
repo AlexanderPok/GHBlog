@@ -5,7 +5,7 @@
     <div class="panel-body">
         <div id="tag-cloud">
             {% for tag in tags %}
-                <a href="/" rel="{{ tag.value }}">{{ tag._id }}</a>
+            <a href="{{ path('gh_blog_home', {'tags': tag._id}) }}" rel="{{ tag.value }}">{{ tag._id }}</a>
             {% endfor %}
         </div>
     </div>

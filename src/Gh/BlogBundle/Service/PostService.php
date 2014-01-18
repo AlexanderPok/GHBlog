@@ -14,8 +14,7 @@ class PostService
     protected $ed;
     protected $validFilterParams = array(
         'category',
-        'tags',
-        'q'
+        'tags'
     );
 
     /**
@@ -48,6 +47,9 @@ class PostService
             if (in_array($key, $this->validFilterParams)) {
                 $qb->field($key)->equals($value);
             }
+        }
+        if (isset($params['q'])) {
+            $qb->field('text')->equals(new \MongoRegex('/.*' . $params['q'] . '.*/i'));
         }
     }
 }
