@@ -16,7 +16,7 @@ show_run("database:drop", "app/console doctrine:database:drop --force");
 show_run("database:drop", "app/console doctrine:mongodb:schema:drop");
 
 show_run("database:create", "app/console doctrine:database:create");
-show_run("mongodb:schema:create", "app/console doctrine:mongodb:schema:create");
+show_run("mongodb:schema:create", "app/console doctrine:mongodb:schema:create --index");
 show_run("schema:update", "app/console doctrine:schema:update --force");
 
 show_run("braincrafted:install", "app/console braincrafted:bootstrap:install");
